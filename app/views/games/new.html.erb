@@ -1,0 +1,22 @@
+<div class="container">
+  <h1>New game</h1>
+  <% tirage = "" %>
+  <div class="draw">
+    <% @letters.each do |letter| %>
+      <div class="letter_game">
+        <p><%= letter %></p>
+        <% tirage = tirage + letter %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="form mt-4">
+    <p>What is the longest word you can find ?</p>
+    <form action="/score" method="post">
+      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+      <input type="text" name="word" class="text">
+      <input id="token" name="token" type="hidden" value="<%= tirage %>" />
+      <input type="submit" value="Play" class="btn">
+    </form>
+  </div>
+</div>
